@@ -13,7 +13,7 @@ def main():
     destination = args.destination
 
     if not os.path.isfile(fname):
-        print fname, 'does not exist!'
+        print (fname, 'does not exist!')
         exit(1)
 
     with open(fname) as f:
@@ -27,7 +27,7 @@ def main():
                 dump_card(card, dump_name, destination)
                 card = ''
                 contacts_read += 1
-                print contacts_read, 'contacts read...'
+                print (contacts_read, 'contacts read...')
             elif line.startswith('FN:'):
                 dump_name = re.sub(r'[^\w\-\.&\s]', '', line[2:]).strip()
                 dump_name = dump_name.replace(' ', '_')
@@ -39,8 +39,8 @@ def dump_card(card, dump_name, destination = ''):
         save_path = os.path.join(destination, dump_name + '.vcf')
         with open(save_path, 'w') as f:
             f.write(card)
-    except Exception, e:
-        print 'Error occured while writing', dump_name
+    except Exception as e:
+        print ('Error occured while writing', dump_name)
         print e
 
 
